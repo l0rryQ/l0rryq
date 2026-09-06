@@ -1,3 +1,11 @@
+// Rarity weights do not need to add up to 100.
+const RARITY_CONFIG = {
+    common: { weight: 60, color: "#d1d8e0" },
+    rare: { weight: 25, color: "#00d2d3" },
+    epic: { weight: 14, color: "#a55eea" },
+    legendary: { weight: 1, color: "#ffb703" }
+};
+
 // Lit Energy Flavors Data Configuration
 const FLAVORS = [
     {
@@ -6,8 +14,6 @@ const FLAVORS = [
         img: "assets/lit_energy_1.jpg",
         rarity: "ОБЫЧНЫЙ",
         rarityClass: "common",
-        chance: 24,
-        color: "#e22f38"
     },
     {
         id: 2,
@@ -15,8 +21,6 @@ const FLAVORS = [
         img: "assets/lit_energy_2.jpg",
         rarity: "ОБЫЧНЫЙ",
         rarityClass: "common",
-        chance: 22,
-        color: "#3b5998"
     },
     {
         id: 3,
@@ -24,8 +28,6 @@ const FLAVORS = [
         img: "assets/lit_energy_3.jpg",
         rarity: "РЕДКИЙ",
         rarityClass: "rare",
-        chance: 18,
-        color: "#f39c12"
     },
     {
         id: 4,
@@ -33,8 +35,6 @@ const FLAVORS = [
         img: "assets/lit_energy_4.jpg",
         rarity: "ОБЫЧНЫЙ",
         rarityClass: "common",
-        chance: 15,
-        color: "#2ecc71"
     },
     {
         id: 5,
@@ -42,8 +42,6 @@ const FLAVORS = [
         img: "assets/lit_energy_5.jpg",
         rarity: "РЕДКИЙ",
         rarityClass: "rare",
-        chance: 7,
-        color: "#e84393"
     },
     {
         id: 6,
@@ -51,8 +49,6 @@ const FLAVORS = [
         img: "assets/lit_energy_6.jpg",
         rarity: "ЭПИЧЕСКИЙ",
         rarityClass: "epic",
-        chance: 4,
-        color: "#f1c40f"
     },
     {
         id: 7,
@@ -60,8 +56,6 @@ const FLAVORS = [
         img: "assets/lit_energy_7.jpg",
         rarity: "ЭПИЧЕСКИЙ",
         rarityClass: "epic",
-        chance: 3,
-        color: "#9b59b6"
     },
     {
         id: 8,
@@ -69,17 +63,13 @@ const FLAVORS = [
         img: "assets/lit_energy_8.jpg",
         rarity: "ЛЕГЕНДАРНЫЙ",
         rarityClass: "legendary",
-        chance: 1,
-        color: "#ffb703"
     },
     {
         id: 9,
         name: "Lit Energy Trubochki",
         img: "assets/lit_energy_9.png",
         rarity: "ЭПИЧЕСКИЙ",
-        rarityClass: "rare",
-        chance: 5,
-        color: "#e84393"
+        rarityClass: "epic"
     }
 ];
 
@@ -108,6 +98,7 @@ const flavorsTab = document.getElementById("flavorsTab");
 const inventoryGrid = document.getElementById("inventoryGrid");
 const inventoryCount = document.getElementById("inventoryCount");
 const flavorsList = document.getElementById("flavorsList");
+const flavorsCount = document.getElementById("flavorsCount");
 
 // Modals
 const depositModal = document.getElementById("depositModal");
@@ -159,6 +150,17 @@ function saveState() {
     localStorage.setItem("l1t_inventory", JSON.stringify(inventory));
 }
 
+function getRarityConfig(rarityClass) {
+    return RARITY_CONFIG[rarityClass] || RARITY_CONFIG.common;
+}
+
+function getFlavorChance(flavor) {
+    const rarityFlavors = FLAVORS.filter((item) => item.rarityClass === flavor.rarityClass);
+    const totalWeight = Object.values(RARITY_CONFIG).reduce((sum, rarity) => sum + rarity.weight, 0);
+    const rarityChance = getRarityConfig(flavor.rarityClass).weight / totalWeight * 100;
+    return rarityChance / rarityFlavors.length;
+}
+
 // Preload flavor images for canvas drawing
 function preloadImages(callback) {
     let loaded = 0;
@@ -194,6 +196,7 @@ function updateUI() {
 
     const totalItemsCount = Object.values(inventory).reduce((a, b) => a + b, 0);
     inventoryCount.textContent = totalItemsCount;
+    flavorsCount.textContent = FLAVORS.length;
 }
 
 // Event Listeners Setup
@@ -312,7 +315,7 @@ function drawWheel(rotationAngle) {
         ctx.beginPath();
         ctx.arc(centerX, centerY, radius, startAngle, endAngle);
         ctx.lineWidth = 6;
-        ctx.strokeStyle = flavor.color;
+        ctx.strokeStyle = getRarityConfig(flavor.rarityClass).color;
         ctx.stroke();
 
         // Draw Flavor Can Image inside Sector
@@ -419,15 +422,18 @@ function spinWheel() {
 
 // Select Winning Flavor using Weighted Random Probability
 function selectWinningFlavor() {
-    const totalChance = FLAVORS.reduce((acc, f) => acc + f.chance, 0);
-    let rand = Math.random() * totalChance;
+    const rarityEntries = Object.entries(RARITY_CONFIG);
+    const totalWeight = rarityEntries.reduce((sum, [, rarity]) => sum + rarity.weight, 0);
+    let randomWeight = Math.random() * totalWeight;
 
-    for (let flavor of FLAVORS) {
-        if (rand < flavor.chance) {
-            return flavor;
+    for (const [rarityClass, rarity] of rarityEntries) {
+        if (randomWeight < rarity.weight) {
+            const flavors = FLAVORS.filter((flavor) => flavor.rarityClass === rarityClass);
+            return flavors[Math.floor(Math.random() * flavors.length)];
         }
-        rand -= flavor.chance;
+        randomWeight -= rarity.weight;
     }
+
     return FLAVORS[0];
 }
 
@@ -498,7 +504,7 @@ function renderFlavorsList() {
                 <h4>${flavor.name}</h4>
                 <p class="flavor-rarity ${flavor.rarityClass}">${flavor.rarity}</p>
             </div>
-            <div class="flavor-chance">${flavor.chance}%</div>
+            <div class="flavor-chance">${getFlavorChance(flavor).toFixed(1)}%</div>
         `;
         flavorsList.appendChild(row);
     });
