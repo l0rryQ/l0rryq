@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L1T WIN — Казино Lit Energy</title>
+    <title>L1T.WIN — Казино Lit Energy</title>
     <link rel="icon" type="image/jpeg" href="assets/lit_energy_logo.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,13 +12,8 @@
     <!-- Navigation Header -->
     <header class="header">
         <div class="logo-container">
-            <img src="assets/lit_energy_logo.jpg" alt="Lit Energy Logo" class="logo-img">
-            <span class="logo-title">L1T <span class="highlight">WIN</span></span>
-        </div>
-
-        <div class="header-center-media">
-            <img src="assets/litvin_proto.jpg" alt="Литвин" class="litvin-avatar">
-            <span class="litvin-tag">OFFICIAL DEMO CASINO</span>
+            <img src="assets/lit_energy_logo.jpg" alt="Lit Energy" class="logo-img">
+            <span class="logo-title">L1T<span class="highlight">WIN</span></span>
         </div>
 
         <div class="balance-card">
@@ -34,16 +29,16 @@
 
     <!-- Main Content Container -->
     <main class="main-container">
-        <!-- Disclaimer Banner -->
+        <!-- Disclaimer Banner 
         <div class="disclaimer-banner">
             <i class="fa-solid fa-triangle-exclamation"></i>
             <span>ВНИМАНИЕ: Это шуточное демо-казино! Все бабки виртуальные, реальный вывод и пополнение не работают. Играйте в кайф!</span>
-        </div>
+        </div> -->
 
         <div class="casino-grid">
             <!-- Left Panel: Wheel of Fortune -->
             <section class="wheel-section card">
-                <h2 class="section-title">⚡ Колесо Фортуны LIT ENERGY</h2>
+                <h2 class="section-title">Колесо Фортуны LIT ENERGY</h2>
 
                 <div class="wheel-wrapper">
                     <div class="pointer"></div>
@@ -71,8 +66,8 @@
             <!-- Right Panel: Inventory & Flavors List -->
             <section class="inventory-section card">
                 <div class="tabs">
-                    <button class="tab-btn active" id="tabInventoryBtn">🎒 Инвентарь (<span id="inventoryCount">0</span>)</button>
-                    <button class="tab-btn" id="tabFlavorsBtn">🧪 Все вкусы (8)</button>
+                    <button class="tab-btn active" id="tabInventoryBtn">Инвентарь (<span id="inventoryCount">0</span>)</button>
+                    <button class="tab-btn" id="tabFlavorsBtn">Все вкусы (8)</button>
                 </div>
 
                 <div class="tab-content" id="inventoryTab">
@@ -92,7 +87,7 @@
 
         <!-- Social Media Section -->
         <section class="socials-section card">
-            <h2>🔥 Социальные Сети & Сообщество</h2>
+            <h2>Социальные Сети и Сообщество</h2>
             <p>Подписывайся на официальные ресурсы Михаила Литвина и LIT ENERGY!</p>
 
             <div class="socials-grid">
@@ -100,7 +95,7 @@
                     <i class="fa-brands fa-telegram"></i>
                     <div>
                         <strong>Telegram Литвина</strong>
-                        <span>@litvintm (Официальный)</span>
+                        <span>ТГК Мишани</span>
                     </div>
                 </a>
 
@@ -108,7 +103,7 @@
                     <i class="fa-brands fa-youtube"></i>
                     <div>
                         <strong>YouTube LITVIN</strong>
-                        <span>Канал Михаила</span>
+                        <span>Канал Мишани</span>
                     </div>
                 </a>
 
@@ -120,7 +115,7 @@
                     </div>
                 </a>
 
-                <a href="https://t.me/litenergy" target="_blank" rel="noopener noreferrer" class="social-card lit-tg">
+                <a href="https://t.me/ragasrani" target="_blank" rel="noopener noreferrer" class="social-card lit-tg">
                     <i class="fa-solid fa-bolt"></i>
                     <div>
                         <strong>Lit Energy Telegram</strong>
@@ -147,7 +142,7 @@
                 <i class="fa-solid fa-credit-card"></i>
                 <h3>Пополнение счета (Virtual)</h3>
             </div>
-            <p class="modal-subtitle">Введите любые тестовые данные для пополнения вашего виртуального баланса.</p>
+            <p class="modal-subtitle">Введите данные для пополнения вашего баланса.</p>
 
             <form id="depositForm" onsubmit="return false;">
                 <div class="form-group">
@@ -169,7 +164,7 @@
                     <input type="number" value="5000" min="100" max="1000000" id="depositAmountInput" required>
                 </div>
                 <button type="submit" class="btn btn-deposit-submit" id="submitDepositBtn">
-                    💳 Оплатить виртуально
+                    Оплатить
                 </button>
             </form>
         </div>
@@ -179,15 +174,13 @@
     <div class="modal-overlay hidden" id="winModal">
         <div class="modal-card win-modal">
             <button class="modal-close" id="closeWinBtn">&times;</button>
-            <div class="win-sparkles">⚡ ⚡ ⚡</div>
             <h2 class="win-title">ПОЗДРАВЛЯЕМ!</h2>
-            <p class="win-subtitle">Вы выбили новую баночку LIT ENERGY!</p>
+            <p class="win-subtitle">Вы выбили новую банку LIT ENERGY!</p>
 
             <div class="win-item-container">
-                <div class="win-rarity-badge" id="winRarityBadge">ОБЫЧНЫЙ</div>
                 <img id="winItemImg" src="" alt="Won Flavor" class="win-item-img">
+                <div class="win-rarity-badge" id="winRarityBadge">ОБЫЧНЫЙ</div>
                 <h3 id="winItemTitle" class="win-item-title">Lit Energy Classic</h3>
-                <p id="winItemDesc" class="win-item-desc">Классический бодрящий вкус энергия Литвина!</p>
             </div>
 
             <button class="btn btn-spin" id="claimWinBtn">Забрать в инвентарь</button>
@@ -196,7 +189,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 L1T WIN x l0rryq.ru — Прикольный фан-проект. Не является настоящим игорным заведением.</p>
+        <p>&copy; 2025 L1T WIN. Не является казино, это все в гта 5 и мы это осуждаем.</p>
     </footer>
 
     <script src="script.js"></script>

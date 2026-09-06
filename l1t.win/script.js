@@ -3,17 +3,15 @@ const FLAVORS = [
     {
         id: 1,
         name: "Lit Energy Original",
-        desc: "Классический оригинальный энергетический заряд от Литвина!",
         img: "assets/lit_energy_1.jpg",
         rarity: "ОБЫЧНЫЙ",
         rarityClass: "common",
-        chance: 25,
+        chance: 24,
         color: "#e22f38"
     },
     {
         id: 2,
         name: "Lit Energy Blueberry",
-        desc: "Сочный и освежающий вкус спелой черники и диких ягод.",
         img: "assets/lit_energy_2.jpg",
         rarity: "ОБЫЧНЫЙ",
         rarityClass: "common",
@@ -23,7 +21,6 @@ const FLAVORS = [
     {
         id: 3,
         name: "Lit Energy Mango Coconut",
-        desc: "Тропический взрыв экзотического манго и кокоса.",
         img: "assets/lit_energy_3.jpg",
         rarity: "РЕДКИЙ",
         rarityClass: "rare",
@@ -33,7 +30,6 @@ const FLAVORS = [
     {
         id: 4,
         name: "Lit Energy Zero Sugar",
-        desc: "Максимум энергии с абсолютным нулем сахара и калорий.",
         img: "assets/lit_energy_4.jpg",
         rarity: "ОБЫЧНЫЙ",
         rarityClass: "common",
@@ -43,27 +39,24 @@ const FLAVORS = [
     {
         id: 5,
         name: "Lit Energy Bubble Gum",
-        desc: "Сладкий ностальгический вкус баббл-гама для яркого настроения.",
         img: "assets/lit_energy_5.jpg",
         rarity: "РЕДКИЙ",
         rarityClass: "rare",
-        chance: 10,
+        chance: 7,
         color: "#e84393"
     },
     {
         id: 6,
         name: "Lit Energy Citrus Rush",
-        desc: "Заряд убойной свежести лимона, лайма и апельсина.",
         img: "assets/lit_energy_6.jpg",
         rarity: "ЭПИЧЕСКИЙ",
         rarityClass: "epic",
-        chance: 6,
+        chance: 4,
         color: "#f1c40f"
     },
     {
         id: 7,
         name: "Lit Energy Wild Berry",
-        desc: "Насыщенный смесью лесных ягод глубокий вкус.",
         img: "assets/lit_energy_7.jpg",
         rarity: "ЭПИЧЕСКИЙ",
         rarityClass: "epic",
@@ -73,12 +66,20 @@ const FLAVORS = [
     {
         id: 8,
         name: "Lit Energy Secret Edition Gold",
-        desc: "Ультра-редкая золотая коллекционная коллекция от Литвина!",
         img: "assets/lit_energy_8.jpg",
         rarity: "ЛЕГЕНДАРНЫЙ",
         rarityClass: "legendary",
         chance: 1,
         color: "#ffb703"
+    },
+    {
+        id: 9,
+        name: "Lit Energy Trubochki",
+        img: "assets/lit_energy_9.png",
+        rarity: "ЭПИЧЕСКИЙ",
+        rarityClass: "rare",
+        chance: 5,
+        color: "#e84393"
     }
 ];
 
@@ -119,7 +120,6 @@ const closeWinBtn = document.getElementById("closeWinBtn");
 const claimWinBtn = document.getElementById("claimWinBtn");
 const winItemImg = document.getElementById("winItemImg");
 const winItemTitle = document.getElementById("winItemTitle");
-const winItemDesc = document.getElementById("winItemDesc");
 const winRarityBadge = document.getElementById("winRarityBadge");
 
 // Initialize App
@@ -231,7 +231,7 @@ function setupEventListeners() {
         updateUI();
 
         depositModal.classList.add("hidden");
-        alert(`🎉 Счёт успешно пополнен на ${addedAmount.toLocaleString("ru-RU")} виртуальных ₽!`);
+        alert(`Счёт успешно пополнен на ${addedAmount.toLocaleString("ru-RU")} ₽!`);
     });
 
     // Win Modal
@@ -325,17 +325,6 @@ function drawWheel(rotationAngle) {
             const imgSize = 45;
             ctx.drawImage(img, radius * 0.65 - imgSize / 2, -imgSize / 2, imgSize, imgSize);
         }
-
-        // Sector Label Text
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 12px 'Segoe UI', sans-serif";
-        ctx.textAlign = "right";
-        ctx.shadowColor = "rgba(0,0,0,0.8)";
-        ctx.shadowBlur = 4;
-
-        // Shorten title for wheel canvas
-        const shortTitle = flavor.name.replace("Lit Energy ", "");
-        ctx.fillText(shortTitle, radius * 0.52, 4);
 
         ctx.restore();
     }
@@ -446,7 +435,6 @@ function selectWinningFlavor() {
 function showWinModal(flavor) {
     winItemImg.src = flavor.img;
     winItemTitle.textContent = flavor.name;
-    winItemDesc.textContent = flavor.desc;
     winRarityBadge.textContent = flavor.rarity;
     winRarityBadge.className = `win-rarity-badge ${flavor.rarityClass}`;
 
@@ -508,9 +496,9 @@ function renderFlavorsList() {
             <img src="${flavor.img}" alt="${flavor.name}" class="flavor-thumb">
             <div class="flavor-details">
                 <h4>${flavor.name}</h4>
-                <p>${flavor.desc}</p>
+                <p class="flavor-rarity ${flavor.rarityClass}">${flavor.rarity}</p>
             </div>
-            <div class="flavor-chance">${flavor.chance}% шанс</div>
+            <div class="flavor-chance">${flavor.chance}%</div>
         `;
         flavorsList.appendChild(row);
     });

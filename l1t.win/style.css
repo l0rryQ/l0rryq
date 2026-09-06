@@ -1,13 +1,13 @@
 :root {
-    --bg-dark: #1e181e;
-    --bg-card: #282028;
-    --bg-input: #181318;
-    --accent-red: #e22f38;
-    --accent-orange: #f95c54;
+    --bg-dark: #0b0d0d;
+    --bg-card: #171b1b;
+    --bg-input: #0d1010;
+    --accent-red: #42f4e4;
+    --accent-orange: #42f4e4;
     --accent-gold: #ffb703;
     --text-light: #ffffff;
-    --text-muted: #a090a0;
-    --border-color: rgba(249, 92, 84, 0.2);
+    --text-muted: #8d9b9a;
+    --border-color: rgba(66, 244, 228, 0.2);
     --radius: 16px;
 }
 
@@ -17,9 +17,33 @@
     padding: 0;
 }
 
+html {
+    scrollbar-color: var(--accent-orange) var(--bg-input);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-input);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-orange);
+    border: 2px solid var(--bg-input);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8afff5;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: radial-gradient(circle at center, #3d333d 0%, #2b222b 50%, #151015 100%);
+    background: radial-gradient(circle at center, #1b2625 0%, #101716 48%, #080a0a 100%);
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
@@ -28,7 +52,7 @@ body {
 
 /* Header */
 .header {
-    background: rgba(30, 24, 30, 0.9);
+    background: rgba(11, 13, 13, 0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     padding: 15px 30px;
@@ -111,7 +135,7 @@ body {
 .balance-amount {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #4cd137;
+    color: var(--accent-orange);
 }
 
 /* Buttons */
@@ -130,32 +154,33 @@ body {
 }
 
 .btn-deposit {
-    background: linear-gradient(135deg, #e22f38 0%, #f95c54 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #42f4e4 0%, #42f4e4 100%);
+    color: #185969;
+    color: #185969;
     padding: 8px 16px;
     font-size: 0.85rem;
-    box-shadow: 0 4px 12px rgba(226, 47, 56, 0.3);
+    box-shadow: 0 4px 12px rgba(66, 244, 228, 0.25);
 }
 
 .btn-deposit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(226, 47, 56, 0.5);
+    box-shadow: 0 6px 16px rgba(66, 244, 228, 0.4);
 }
 
 .btn-spin {
     width: 100%;
     padding: 16px;
     font-size: 1.2rem;
-    background: linear-gradient(135deg, #e22f38 0%, #f95c54 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #42f4e4 0%, #42f4e4 100%);
+    color: #185969;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(226, 47, 56, 0.4);
+    box-shadow: 0 6px 20px rgba(66, 244, 228, 0.3);
     letter-spacing: 0.5px;
 }
 
 .btn-spin:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(226, 47, 56, 0.6);
+    box-shadow: 0 8px 25px rgba(66, 244, 228, 0.45);
 }
 
 .btn-spin:disabled {
@@ -176,7 +201,7 @@ body {
 }
 
 .disclaimer-banner {
-    background: rgba(226, 47, 56, 0.15);
+    background: rgba(66, 244, 228, 0.08);
     border: 1px solid var(--accent-red);
     border-radius: var(--radius);
     padding: 12px 20px;
@@ -184,7 +209,7 @@ body {
     align-items: center;
     gap: 12px;
     font-size: 0.9rem;
-    color: #ff9f89;
+    color: var(--accent-orange);
 }
 
 .casino-grid {
@@ -249,7 +274,7 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 50%;
-    box-shadow: 0 0 30px rgba(226, 47, 56, 0.25), inset 0 0 15px rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px rgba(66, 244, 228, 0.2), inset 0 0 15px rgba(0,0,0,0.5);
 }
 
 .controls-container {
@@ -295,7 +320,7 @@ body {
 }
 
 .bet-btn.active {
-    background: rgba(249, 92, 84, 0.2);
+    background: rgba(66, 244, 228, 0.12);
     border-color: var(--accent-orange);
     color: var(--accent-orange);
 }
@@ -449,9 +474,29 @@ body {
     margin-bottom: 2px;
 }
 
-.flavor-details p {
+.flavor-rarity {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.flavor-rarity.common,
+.win-rarity-badge.common {
+    color: #d1d8e0;
+}
+
+.flavor-rarity.rare,
+.win-rarity-badge.rare {
+    color: #00d2d3;
+}
+
+.flavor-rarity.epic,
+.win-rarity-badge.epic {
+    color: #a55eea;
+}
+
+.flavor-rarity.legendary,
+.win-rarity-badge.legendary {
+    color: #ffb703;
 }
 
 .flavor-chance {
@@ -516,7 +561,7 @@ body {
 .social-card.telegram i { color: #0088cc; }
 .social-card.youtube i { color: #ff0000; }
 .social-card.vk i { color: #0077ff; }
-.social-card.lit-tg i { color: #f95c54; }
+.social-card.lit-tg i { color: #42f4e4; }
 .social-card.lit-vk i { color: #ffb703; }
 
 .social-card:hover {
@@ -613,7 +658,7 @@ body {
     width: 100%;
     padding: 14px;
     font-size: 1rem;
-    background: linear-gradient(135deg, #e22f38 0%, #f95c54 100%);
+    background: linear-gradient(135deg, #42f4e4 0%, #42f4e4 100%);
     color: #fff;
     border-radius: 10px;
     margin-top: 10px;
@@ -650,6 +695,9 @@ body {
     margin-bottom: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .win-rarity-badge {
@@ -659,7 +707,23 @@ body {
     font-size: 0.75rem;
     font-weight: 700;
     margin-bottom: 10px;
-    background: var(--accent-orange);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.win-rarity-badge.common {
+    background: rgba(209, 216, 224, 0.12);
+}
+
+.win-rarity-badge.rare {
+    background: rgba(0, 210, 211, 0.12);
+}
+
+.win-rarity-badge.epic {
+    background: rgba(165, 94, 234, 0.12);
+}
+
+.win-rarity-badge.legendary {
+    background: rgba(255, 183, 3, 0.12);
 }
 
 .win-item-img {
@@ -672,11 +736,6 @@ body {
 .win-item-title {
     font-size: 1.2rem;
     margin-bottom: 6px;
-}
-
-.win-item-desc {
-    font-size: 0.8rem;
-    color: var(--text-muted);
 }
 
 /* Footer */
