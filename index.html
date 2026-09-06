@@ -69,11 +69,14 @@
 
         .widget-container {
             width: 100%;
-            border-radius: 0px;
-            padding: 15px;
-            backdrop-filter: blur(10px);
+            max-width: 460px;
+            overflow: hidden;
             display: flex;
             justify-content: center;
+        }
+
+        .widget-container iframe {
+            clip-path: inset(0 0 0 8px);
         }
 
         .tgc-link {
@@ -106,7 +109,7 @@
 <body>
     <div class="container">
         <div class="profile-header">
-            <img src="assets/avatar.jpg" alt="l0rryq avatar" class="avatar">
+            <img src="assets/avatar.jpg" class="avatar">
             <h1 class="title">l0rryq</h1>
         </div>
 
