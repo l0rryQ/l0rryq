@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>l0rryq</title>
+    <link rel="icon" type="image/jpeg" href="assets/avatar.jpg">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #3d333d 0%, #312931 50%, #1a151a 100%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e22f38;
+            box-shadow: 0 0 20px rgba(226, 47, 56, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff 0%, #f95c54 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .widget-container {
+            width: 100%;
+            background: rgba(30, 24, 30, 0.7);
+            border: 1px solid rgba(249, 92, 84, 0.2);
+            border-radius: 16px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+        }
+
+        .casino-link {
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, #e22f38 0%, #f95c54 100%);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(226, 47, 56, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .casino-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(226, 47, 56, 0.5);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #887888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="assets/avatar.jpg" alt="l0rryq avatar" class="avatar">
+            <h1 class="title">l0rryq</h1>
+        </div>
+
+        <div class="widget-container">
+            <script async src="https://telegram.org/js/telegram-widget.js?24" data-telegram-post="l0rryq/8" data-width="100%" data-userpic="false" data-color="E22F38" data-dark="1" data-dark-color="F95C54"></script>
+        </div>
+
+        <a href="/l1t.win/" class="casino-link">
+            ⚡ Перейти на L1T WIN
+        </a>
+
+        <footer>
+            &copy; l0rryq.ru
+        </footer>
+    </div>
+</body>
+</html>
